@@ -1,0 +1,9 @@
+streamlit
+torch
+torchvision
+numpy
+pandas
+matplotlib
+folium
+streamlit-folium
+requests
