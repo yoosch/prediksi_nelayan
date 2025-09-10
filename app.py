@@ -14,6 +14,9 @@ st.set_page_config(
     page_icon="🐟", 
 )
 
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+# st.write(f"Using device: {DEVICE}")
+
 # --------------------------
 # 1. Definisi model
 # --------------------------
@@ -47,7 +50,7 @@ def load_models_and_scalers():
     else:
         n_feats = 6
 
-    model = STNN_LSTM(input_size=n_feats, hidden_size=64, num_layers=2)
+    model = STNN_LSTM(input_size=n_feats, hidden_size=64, num_layers=2).to(DEVICE)
     state_dict = torch.load("stnn.pth", map_location="cpu")
     model.load_state_dict(state_dict)
     model.eval()
