@@ -1,9 +1,10 @@
 streamlit
-torch==2.1.0+cpu
-torchvision==0.16.0+cpu
+torch==2.8.1+cpu
+torchvision==0.15.2+cpu
 numpy
 pandas
 matplotlib
 folium
 streamlit-folium
 requests
+joblib
