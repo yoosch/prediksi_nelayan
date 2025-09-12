@@ -10,7 +10,7 @@ import math
 SEQ_LEN = 12
 HISTORY = SEQ_LEN - 1
 st.set_page_config(
-    page_title="Prediksi Hasil Tangkapan Ikan", 
+    page_title="SIGEMPOL - Prediksi Hasil Tangkapan Ikan", 
     page_icon="🐟", 
 )
 
@@ -124,7 +124,7 @@ def haversine(lat1, lon1, lat2, lon2):
 # --------------------------
 # 5. Streamlit UI
 # --------------------------
-st.title("🎣 Prediksi Hasil Tangkapan Ikan")
+st.title("🎣SIGEMPOL : Prediksi Hasil Tangkapan Ikan")
 with st.sidebar:
     st.header("Input Waktu")
     year = st.number_input("Tahun Prediksi", value=2025, step=1)
@@ -195,7 +195,7 @@ if internet_on():
     m = folium.Map(location=[-6.75, 109.95], zoom_start=12)
     folium.Marker(
         location=[rowosari_lat, rowosari_lon],
-        popup="📍 Rowosari (Titik Awal)",
+        popup="📍 Gempolsewu (Titik Awal)",
         icon=folium.Icon(color="green", icon="home")
     ).add_to(m)
 
@@ -218,6 +218,8 @@ if internet_on():
             fill_opacity=0.5,
             tooltip=f"Grid {g['id']} → {val:.2f} kg"
         ).add_to(m)
+
+    folium.LatLngPopup().add_to(m)
 
     # Legend
     legend_html = """
@@ -283,7 +285,7 @@ if internet_on():
                     🌿 Chlorophyll: <b>{pred['Chlorophyll']:.3f}</b><br>
                     🌡 SST: <b>{pred['SST']:.2f} °C</b><br>
                     🐟 Catch Pred: <b>{pred['Catch_Pred']:.2f} kg</b><br>
-                    📏 Jarak dari Rowosari: <b>{distance_km:.2f} km</b>
+                    📏 Jarak dari Gempolsewu: <b>{distance_km:.2f} km</b>
                 </div>
                 """,
                 unsafe_allow_html=True
@@ -307,6 +309,6 @@ else:
             "Chlorophyll": round(pred["Chlorophyll"],3),
             "SST (°C)": round(pred["SST"],2),
             "Catch Pred (kg)": round(pred["Catch_Pred"],2),
-            "Jarak dari Rowosari (km)": round(distance,2)
+            "Jarak dari Gempolsewu (km)": round(distance,2)
         })
     st.table(grid_data)
